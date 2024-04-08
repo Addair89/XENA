@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Category, UserPrompt, UserFavoriteImprovement
 
 
 # Create your views here.
