@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "shentox";
+  src: local("shentox"), url("../fonts/ShentoxTRIAL-Rg.otf") format("truetype");
+}
+
 html,
 * {
   margin: 0;
@@ -8,6 +13,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "shentox";
 }
 main {
   flex: 1 0 auto;
@@ -38,7 +44,10 @@ ul {
   list-style-type: none;
 }
 
-ul li a {
+ul li a,
+ul li form button {
+  background: none;
+  border: none;
   color: white;
   text-decoration: none;
   height: 10vmin;
@@ -47,6 +56,7 @@ ul li a {
   padding: 2vmin;
   border-radius: 5px;
   font-size: 3.2vmin;
+  font-family: "shentox";
 }
 
 .right {
@@ -56,9 +66,19 @@ ul li a {
   align-items: center;
 }
 
-ul li a:hover {
+ul li a:hover,
+ul li form button:hover {
   color: #006466;
   background-color: whitesmoke;
   transition: all 0.2s ease-out;
   transform: scale(1.02);
+  cursor: pointer;
+}
+
+.brand-logo {
+  padding: 0px;
+}
+
+.brand-logo img {
+  height: 10vmin;
 }
