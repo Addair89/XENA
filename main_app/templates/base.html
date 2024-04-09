@@ -17,7 +17,9 @@
         <div class="nav-wrapper">
           <ul>
             <li>
-              <a href="/" class="left brand-logo">&nbsp;&nbsp;XENA</a>
+              <a href="/" class="left brand-logo"
+                ><img src="../static/images/xenaLogo.png" alt=""
+              /></a>
             </li>
           </ul>
           <ul class="right">
@@ -26,16 +28,16 @@
             <li><a href="{% url 'prompt' %}">Prompt History</a></li>
             <li><a href="{% url 'favorites_index' %}">Favorite Prompts</a></li>
             <li>
-                  <form action="{% url 'logout' %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="btn">Log Out</button>
-                </form>
+              <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">Log Out</button>
+              </form>
             </li>
             {% else %}
             <!-- New Sign Up link -->
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
-          {% endif %}
+            {% endif %}
           </ul>
         </div>
       </nav>
