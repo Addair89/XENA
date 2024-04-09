@@ -22,7 +22,7 @@ def favorites_index(request):
         favorites = UserFavoriteImprovement.objects.filter(user=request.user)
     else:
         favorites = None
-    return render(request, 'favorites/index.html', {'favorites': favorites})
+    return render(request, 'prompts/favorites.html', {'favorites': favorites})
 
 def signup(request):
   error_message = ''
