@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Category, UserPrompt, UserFavoriteImprovement
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .forms import OpenAIForm
+from openai import OpenAI
+import os
 
 
 
@@ -38,3 +41,20 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+
+def openai_view(request):
+    form = OpenAIForm(request.POST or None)
+    response = None
+
+    if request.method == 'POST':
+        if form.is_valid():
+            input_text = form.cleaned_data['input_text']
+
+            # Send input to OpenAI API and receive response
+            API_KEY = os.getenv('API_KEY')
+            client = OpenAI(api_key=API_KEY)
+            response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": input_text}])
+            
+            response = response.choices[0].message.content
+
+    return render(request, 'openai.html', {'form': form, 'response': response, 'prompt_text': input_text})
