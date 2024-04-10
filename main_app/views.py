@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Category, UserPrompt, UserFavoriteImprovement
+from django.shortcuts import get_object_or_404,render, redirect
+from .models import Category, UserPrompt, UserFavoriteImprovement, PromptImprovement
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import OpenAIForm
@@ -42,12 +42,33 @@ def prompt(request):
     prompts = UserPrompt.objects.filter(user=request.user)
     return render(request, 'prompts/index.html', {'prompts': prompts})
 
+def add_to_favorites(request, improvement_id):
+    # Get the current user and the improvement instance
+    user = request.user
+    improvement = get_object_or_404(PromptImprovement, id=improvement_id)
+
+    # Get or create a UserFavoriteImprovement instance for the user
+    user_favorite, created = UserFavoriteImprovement.objects.get_or_create(user=user)
+
+    # Add the improvement to the user's favorites
+    user_favorite.improvements.add(improvement)
+    user_favorite.save()
+    favorites = UserFavoriteImprovement.objects.filter(user=request.user).prefetch_related('improvements')
+
+    # Flatten out the improvements into a list
+    favorite_improvements = [fav.improvements.all() for fav in favorites]
+    return render(request, 'prompts/favorites.html', {'favorite_improvements': favorite_improvements})
+
+
 def favorites_index(request):
     if request.user.is_authenticated:
-        favorites = UserFavoriteImprovement.objects.filter(user=request.user)
+        favorites = UserFavoriteImprovement.objects.filter(user=request.user).prefetch_related('improvements')
+
+    # Flatten out the improvements into a list
+        favorite_improvements = [fav.improvements.all() for fav in favorites]
     else:
         favorites = None
-    return render(request, 'prompts/favorites.html', {'favorites': favorites})
+    return render(request, 'prompts/favorites.html', {'favorite_improvements': favorite_improvements})
 
 def signup(request):
   error_message = ''
@@ -86,10 +107,12 @@ def category_detail(request, category_id):
     form = OpenAIForm(request.POST or None)
     response = None
     improved_response = None 
+    user_prompt = None 
+    prompt_improvement = None 
     if request.method == 'POST':
         if form.is_valid():
             input_text = form.cleaned_data['input_text']
-            improvement = f'Please provide the best example prompt, no yapping: {input_text}'
+            improvement = f'Only respond with an improved prompt, no yapping: {input_text}'
             # Send input to OpenAI API and receive response
             API_KEY = os.getenv('API_KEY')
             client = OpenAI(api_key=API_KEY)
@@ -103,7 +126,20 @@ def category_detail(request, category_id):
                 prompt=input_text
             )
             user_prompt.save()
-    return render(request, 'categories/detail.html', {"category": category, "form": form, "response": response, "improved_response": improved_response})
+
+            prompt_improvement = PromptImprovement(
+                improvement=improved_response,
+                user_prompt=user_prompt 
+            )
+            prompt_improvement.save()
+    return render(request, 'categories/detail.html', 
+                  {"category": category, 
+                   "form": form, 
+                   "response": response, 
+                   "improved_response": improved_response,
+                   "user_prompt": user_prompt,
+                   "prompt_improvement": prompt_improvement 
+                   })
 
 
 
