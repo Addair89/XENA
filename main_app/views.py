@@ -39,7 +39,7 @@ def categories(request):
     return render(request, 'categories/index.html', {'categories': all_categories})
 
 def prompt(request):
-    prompts = request.user.userprompt_set.all().order_by('-timestamp')
+    prompts = UserPrompt.objects.filter(user=request.user)
     return render(request, 'prompts/index.html', {'prompts': prompts})
 
 def favorites_index(request):

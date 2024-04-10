@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Prompt History</h1>
-
+{% if prompts %}
+<ul>
+    {% for prompt in prompts %}
+    <li>
+      <strong>Category:</strong> {{ prompt.category }}<br>
+      <strong>Prompt:</strong> {{ prompt.prompt }}<br>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No prompts found.</p>
+{% endif %}
 {% endblock %}
