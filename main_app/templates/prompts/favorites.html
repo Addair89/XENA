@@ -1,9 +1,19 @@
 {% extends 'base.html' %} {% block content %}
+<h1>Favorite Prompts</h1>
 
-<h1>Favorites</h1>
-
-{% for favorite in favorites %}
-    <p>Favorite</p>
-{% endfor %}   
-
-{% endblock %}
+{% if favorite_improvements %} {% for user_favorite in favorite_improvements %}
+{% for improvement in user_favorite %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Original Prompt</h5>
+    <p class="card-text">{{ improvement.user_prompt.prompt }}</p>
+    <h5 class="card-title">Improvement</h5>
+    <p class="card-text">{{ improvement.improvement }}</p>
+    <p class="card-text">
+      <small class="text-muted">{{ improvement.timestamp }}</small>
+    </p>
+  </div>
+</div>
+{% endfor %} {% endfor %} {% else %}
+<p>You don't have any favorite prompts yet.</p>
+{% endif %} {% endblock %}

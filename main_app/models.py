@@ -12,6 +12,8 @@ class PromptImprovement(models.Model):
     improvement = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     user_prompt = models.ForeignKey(UserPrompt, on_delete=models.CASCADE, related_name='improvements')
+    def __str__(self):
+        return self.improvement
 
 class UserFavoriteImprovement(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
