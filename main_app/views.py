@@ -18,6 +18,7 @@ def home(request):
     form = OpenAIForm(request.POST or None)
     response = None
     prompt_text = None
+    categories = Category.objects.all()
 
     if request.method == 'POST':
         if form.is_valid():
@@ -32,7 +33,7 @@ def home(request):
             )
             response = response.choices[0].message.content
 
-    return render(request, 'home.html',{'form': form, 'response': response})
+    return render(request, 'home.html',{'form': form, 'response': response, "categories": categories})
 
 def categories(request):
     all_categories = Category.objects.all()
@@ -80,4 +81,25 @@ def openai_view(request):
             response = response.choices[0].message.content
 
     return render(request, 'openai.html', {'form': form, 'response': response})
+
+def category_detail(request, category_id):
+   category = Category.objects.get(id=category_id)
+   form = OpenAIForm(request.POST or None)
+   response = None
+
+   if request.method == 'POST':
+        if form.is_valid():
+            input_text = form.cleaned_data['input_text']
+
+            # Send input to OpenAI API and receive response
+            API_KEY = os.getenv('API_KEY')
+            client = OpenAI(api_key=API_KEY)
+            response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": input_text}])
+            
+            response = response.choices[0].message.content
+   
+   return render(request, 'categories/detail.html', {"category": category, "form": form, "response": response})
+
+
+
 

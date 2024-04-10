@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>{{ category.name }}</h1>
+<p>{{ category.description }}</p>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+
+{% if response %}
+<h3>Response from OpenAI:</h3>
+<p>{{ prompt_text }}</p>
+<p>{{ response }}</p>
+{% endif %} {% endblock %}
