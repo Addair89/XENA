@@ -11,4 +11,20 @@
 <h3>Response from OpenAI:</h3>
 <p>{{ prompt_text }}</p>
 <p>{{ response }}</p>
+{% endif %} 
+
+{% if improved_response %}
+<h3>Improvement from OpenAI:</h3>
+<p>{{ prompt_text }}</p>
+<p>{{ improved_response }}</p>
+<form action="{% url 'favorites_index' %}" method="post"> {% csrf_token %} 
+  <button type="submit"> 
+    {% if prompt.is_favorite %} 
+    Unfavorite 
+    {% else %} 
+    Favorite 
+    {% endif %} 
+  </button> 
+</form>
 {% endif %} {% endblock %}
+

@@ -9,4 +9,5 @@ urlpatterns =[
     path('favorites/', views.favorites_index, name='favorites_index'),
     path('accounts/signup/', views.signup, name='signup'),
     path('openai/', views.openai_view, name='openai'),
+    # path('prompt/<int:prompt_id>/favorite/', views.favorites_index, name='favorites_index')
 ]

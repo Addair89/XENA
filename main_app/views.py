@@ -82,29 +82,49 @@ def openai_view(request):
     return render(request, 'openai.html', {'form': form, 'response': response})
 
 def category_detail(request, category_id):
-   category = Category.objects.get(id=category_id)
-   form = OpenAIForm(request.POST or None)
-   response = None
-
-   if request.method == 'POST':
+    category = Category.objects.get(id=category_id)
+    form = OpenAIForm(request.POST or None)
+    response = None
+    improved_response = None 
+    if request.method == 'POST':
         if form.is_valid():
             input_text = form.cleaned_data['input_text']
-
+            improvement = f'Please provide the best example prompt, no yapping: {input_text}'
             # Send input to OpenAI API and receive response
             API_KEY = os.getenv('API_KEY')
             client = OpenAI(api_key=API_KEY)
             response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": input_text}])
-            
+            improved_response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": improvement}])
             response = response.choices[0].message.content
-
+            improved_response = improved_response.choices[0].message.content
             user_prompt = UserPrompt(
                 user=request.user,
                 category=category,
                 prompt=input_text
             )
             user_prompt.save()
-   
-   return render(request, 'categories/detail.html', {"category": category, "form": form, "response": response})
+    return render(request, 'categories/detail.html', {"category": category, "form": form, "response": response, "improved_response": improved_response})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
