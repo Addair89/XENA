@@ -7,4 +7,5 @@ urlpatterns =[
     path('prompt/', views.prompt, name='prompt'),
     path('favorites/', views.favorites_index, name='favorites_index'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('openai/', views.openai_view, name='openai'),
 ]
