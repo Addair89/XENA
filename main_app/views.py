@@ -57,4 +57,4 @@ def openai_view(request):
             
             response = response.choices[0].message.content
 
-    return render(request, 'openai.html', {'form': form, 'response': response, 'prompt_text': input_text})
+    return render(request, 'openai.html', {'form': form, 'response': response})
