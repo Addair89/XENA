@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -8,9 +7,6 @@ class UserPrompt(models.Model):
     category = models.CharField(max_length=100)
     prompt = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-
-    def get_absolute_url(self):
-        return reverse('prompts/index.html', kwargs={'user_id': self.user.id})
 
 class PromptImprovement(models.Model):
     improvement = models.TextField()

@@ -7,7 +7,6 @@ from openai import OpenAI
 import os
 
 
-
 # Create your views here.
 import os
 from django.shortcuts import render
@@ -97,6 +96,13 @@ def category_detail(request, category_id):
             response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": input_text}])
             
             response = response.choices[0].message.content
+
+            user_prompt = UserPrompt(
+                user=request.user,
+                category=category,
+                prompt=input_text
+            )
+            user_prompt.save()
    
    return render(request, 'categories/detail.html', {"category": category, "form": form, "response": response})
 
