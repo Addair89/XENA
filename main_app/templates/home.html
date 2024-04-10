@@ -1,4 +1,38 @@
-{% extends 'base.html' %} {% block content %}
-<h1>You're HOME!!!!</h1>
+{% extends 'base.html' %}
 
+{% block content %}
+<h1>WELCOME</h1>
+<p>Welcome to XENA, your interactive AI toolkit to help you navigate through various tasks while providing feedback to assist with future AI powered projects.</p>
+
+{% if user.is_authenticated %}
+  <h2>CATEGORIES</h2>
+  <a href="">EDUCATION</a>
+  <a href="">FINANCE</a>
+  <a href="">HOME/LIFESTYLE</a>
+  <a href="">CAREER</a>
+  <a href="">CHILD CARE</a>
+  <a href="">FITNESS</a>
+  <a href="">GENERAL</a>
+
+  <h2>USER INFO</h2>
+  <p>
+    Hello {{ user.name }}, you've made {{ user.prompt_count }} prompts and have {{ user.favorite_count }} favorite prompts. Is there anything you need help with today?
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+  {% if response %}
+    <h3>Response from OpenAI:</h3>
+    <p>{{ prompt_text }}</p>
+    <p>{{ response }}</p>
+  {% endif %}
+
+{% else %}
+  <li><a href="{% url 'signup' %}">Sign Up</a></li>
+  <li><a href="{% url 'login' %}">Log In</a></li>
+{% endif %}
 {% endblock %}

@@ -9,8 +9,30 @@ import os
 
 
 # Create your views here.
+import os
+from django.shortcuts import render
+from .forms import OpenAIForm
+from openai import OpenAI
+
 def home(request):
-    return render(request, 'home.html')
+    form = OpenAIForm(request.POST or None)
+    response = None
+    prompt_text = None
+
+    if request.method == 'POST':
+        if form.is_valid():
+            input_text = form.cleaned_data['input_text']
+            prompt_text = input_text 
+
+            API_KEY = os.getenv('API_KEY')
+            client = OpenAI(api_key=API_KEY)
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": input_text}]
+            )
+            response = response.choices[0].message.content
+
+    return render(request, 'home.html',{'form': form, 'response': response})
 
 def categories(request):
     all_categories = Category.objects.all()
@@ -58,3 +80,4 @@ def openai_view(request):
             response = response.choices[0].message.content
 
     return render(request, 'openai.html', {'form': form, 'response': response})
+
