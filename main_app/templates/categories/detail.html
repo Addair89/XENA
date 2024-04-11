@@ -1,29 +1,37 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>{{ category.name }}</h1>
-<p>{{ category.description }}</p>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Submit</button>
-</form>
+<h1 class="category-header">{{ category.name }}</h1>
+<p class="category-desc">{{ category.description }}</p>
 
 {% if response %}
 <h3>Response from OpenAI:</h3>
 <p>{{ prompt_text }}</p>
-<p>{{ response }}</p>
+<p class="prompt-response">{{ response }}</p>
 {% endif %} {% if improved_response %}
 <h3>Improvement from OpenAI:</h3>
 <p>{{ prompt_text }}</p>
-<p>{{ improved_response }}</p>
-<form action="{% url 'add-to-favorites' prompt_improvement.id %}" method="post">
+<form
+  class="fav-form"
+  action="{% url 'add-to-favorites' prompt_improvement.id %}"
+  method="post"
+>
   {% csrf_token %}
+  <p class="improved-response">{{ improved_response }}</p>
   <button
+    class="fav-form-btn"
     type="submit"
     name="improvement_id"
     value="{{ prompt_improvement.id }}"
   >
-    Add to Favorites
+    <i title="Add to favorites" class="fa-solid fa-bookmark"></i>
+  </button>
+</form>
+{% endif %}
+<form class="category-input-form" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button class="cat-form-btn" type="submit">
+    <i class="fa-solid fa-rotate"></i>
   </button>
 </form>
 
-{% endif %} {% endblock %}
+{% endblock %}

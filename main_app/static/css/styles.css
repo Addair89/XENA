@@ -1,0 +1,240 @@
+@font-face {
+  font-family: "shentox";
+  src: local("shentox"), url("../fonts/ShentoxTRIAL-Rg.otf") format("truetype");
+}
+
+html,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #4d194d;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23006466'/%3E%3Cstop offset='1' stop-color='%234D194D'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%234D194D' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%234D194D' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.5'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: "shentox";
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 auto;
+  padding-top: 10vmin;
+}
+
+h1 {
+  font-size: 9vmin;
+  margin: 10vmin;
+  color: whitesmoke;
+}
+
+.welcome-text {
+  color: whitesmoke;
+  width: 50%;
+  font-size: 3vmin;
+  text-align: center;
+  padding: 5vmin;
+  background: #27264063;
+  border-radius: 15px;
+}
+
+main h2 {
+  font-size: 5vmin;
+  color: whitesmoke;
+  margin: 2vmin;
+}
+
+.category-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vmin;
+}
+
+.category-link {
+  color: whitesmoke;
+  font-size: 2vmin;
+  padding: 2vmin;
+  border: 2px solid #006466;
+  text-decoration: none;
+  border-radius: 15px;
+  background-color: #4d194d8f;
+}
+
+.category-link:hover {
+  background-color: #006466;
+  border: 2px solid #4d194d8f;
+  transition: all 0.2s ease-in-out;
+}
+
+.category-header {
+  margin-bottom: 1vmin;
+}
+
+.category-desc {
+  font-size: 2.5vmin;
+  width: 40%;
+  text-align: center;
+  margin: 2vmin;
+  line-height: 35px;
+  color: whitesmoke;
+  padding: 1vmin;
+  border-radius: 15px;
+  background: #4d194d4d;
+}
+
+.prompt-response {
+  font-size: 2.5vmin;
+  width: 40%;
+  text-align: center;
+  margin: 2vmin;
+  line-height: 35px;
+  color: black;
+  padding: 1vmin;
+  border-radius: 15px;
+  background: #006466c2;
+}
+
+.improved-response {
+  font-size: 2.5vmin;
+  width: 100%;
+  text-align: center;
+  margin: 2vmin;
+  line-height: 35px;
+  color: #006466;
+  padding: 1vmin;
+  border-radius: 15px;
+  background: #fefefecf;
+}
+
+.category-input-form {
+  width: 30%;
+  position: relative;
+  margin-top: auto;
+}
+
+.category-input-form p input {
+  width: 100%;
+  height: 80px;
+  font-size: 3vmin;
+  background: #1b3a4b;
+  border: 1px solid whitesmoke;
+  padding: 2vmin;
+  color: whitesmoke;
+  border-radius: 15px;
+}
+
+.cat-form-btn {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 55%;
+  right: 10px;
+}
+
+.fav-form {
+  position: relative;
+}
+
+.fav-form-btn {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  background: none;
+  border: none;
+}
+
+.cat-form-btn:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.16);
+}
+
+.fa-rotate {
+  font-size: 3vmin;
+  color: white;
+}
+
+.fa-bookmark {
+  font-weight: 900;
+  font-size: 2.5vmin;
+  color: #846e84;
+}
+
+.fa-bookmark:hover {
+  transition: all 0.2s ease-in-out;
+  scale: 1.2;
+  cursor: pointer;
+  color: #006466;
+}
+
+.category-input-form p input:focus {
+  outline: none;
+}
+
+footer.page-footer {
+  padding-top: 0;
+  text-align: right;
+}
+
+.navbar {
+  height: 10vmin;
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  color: white;
+}
+
+.nav-wrapper {
+  height: 10vmin;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li a,
+ul li form button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: none;
+  height: 10vmin;
+  display: flex;
+  align-items: center;
+  padding: 2vmin;
+  border-radius: 5px;
+  font-size: 3.2vmin;
+  font-family: "shentox";
+}
+
+.right {
+  display: flex;
+  gap: 5vmin;
+  padding-right: 5vmin;
+  align-items: center;
+}
+
+ul li a:hover,
+ul li form button:hover {
+  color: #006466;
+  background-color: whitesmoke;
+  transition: all 0.2s ease-out;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.brand-logo img {
+  height: 10vmin;
+  border-radius: 50%;
+}
+
+.nav-wrapper ul:first-child li a:hover {
+  background: none;
+}

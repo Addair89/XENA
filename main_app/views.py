@@ -58,7 +58,7 @@ def add_to_favorites(request, improvement_id):
 
     # Flatten out the improvements into a list
     favorite_improvements = [fav.improvements.all() for fav in favorites]
-    return render(request, 'prompts/favorites.html', {'favorite_improvements': favorite_improvements})
+    return redirect('favorites_index')
 
 
 def favorites_index(request):

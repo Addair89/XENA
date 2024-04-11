@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h1>WELCOME</h1>
-<p>
+<p class="welcome-text">
   Welcome to XENA, your interactive AI toolkit to help you navigate through
   various tasks while providing feedback to assist with future AI powered
   projects.
@@ -8,27 +8,11 @@
 
 {% if user.is_authenticated %}
 <h2>CATEGORIES</h2>
-{% for category in categories %}
-<a href="{% url 'category_detail' category.id %}">{{ category.name }}</a>
-{% endfor %}
-
-<h2>USER INFO</h2>
-<p>
-  Hello {{ user.name }}, you've made {{ user.prompt_count }} prompts and have {{
-  user.favorite_count }} favorite prompts. Is there anything you need help with
-  today?
-</p>
-
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Submit</button>
-</form>
-
-{% if response %}
-<h3>Response from OpenAI:</h3>
-<p>{{ prompt_text }}</p>
-<p>{{ response }}</p>
-{% endif %} {% else %}
-<li><a href="{% url 'signup' %}">Sign Up</a></li>
-<li><a href="{% url 'login' %}">Log In</a></li>
+<div class="category-btns">
+  {% for category in categories %}
+  <a class="category-link" href="{% url 'category_detail' category.id %}"
+    >{{ category.name }}</a
+  >
+  {% endfor %}
+</div>
 {% endif %} {% endblock %}
