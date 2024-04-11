@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404,render, redirect
 from .models import Category, UserPrompt, UserFavoriteImprovement, PromptImprovement
+from django.views.decorators.http import require_POST
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import OpenAIForm
@@ -69,6 +70,13 @@ def favorites_index(request):
     else:
         favorites = None
     return render(request, 'prompts/favorites.html', {'favorite_improvements': favorite_improvements})
+
+@require_POST
+def delete_favorite(request, improvement_id):
+    improvement = get_object_or_404(PromptImprovement, id=improvement_id)
+    user_favorite = UserFavoriteImprovement.objects.get(user=request.user)
+    user_favorite.improvements.remove(improvement)
+    return redirect('favorites_index')
 
 def signup(request):
   error_message = ''
