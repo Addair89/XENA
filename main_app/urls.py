@@ -10,6 +10,10 @@ urlpatterns =[
     path('accounts/signup/', views.signup, name='signup'),
     path('add-to-favorites/<int:improvement_id>/', views.add_to_favorites, name='add-to-favorites'),
     path('openai/', views.openai_view, name='openai'),
-    path('delete_favorite/<int:improvement_id>/', views.delete_favorite, name='delete_favorite')
+    path('delete_favorite/<int:improvement_id>/', views.delete_favorite, name='delete_favorite'),
+    path('edit_favorite/<int:improvement_id>/', views.edit_favorite, name='edit_favorite'),
+    path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite'),
+    # path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite'),
+    # path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite')
     # path('prompt/<int:prompt_id>/favorite/', views.favorites_index, name='favorites_index')
 ]

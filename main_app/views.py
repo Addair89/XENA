@@ -149,6 +149,32 @@ def category_detail(request, category_id):
                    "prompt_improvement": prompt_improvement 
                    })
 
+# @require_POST
+# def update_favorite(request, improvement_id):
+#     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
+#     new_improvement = request.POST.get('new_improvement')
+#     if new_improvement:
+#         improvement.improvement = new_improvement
+#         improvement.save()
+#     return redirect('update_favorite', improvement_id=improvement_id)
+
+def edit_favorite(request, improvement_id):
+    improvement = get_object_or_404(PromptImprovement, id=improvement_id)
+    return render(request, 'prompts/update_favorite.html', {'improvement': improvement})
+
+@require_POST
+def update_favorite(request, improvement_id):
+    improvement = get_object_or_404(PromptImprovement, id=improvement_id)
+    new_improvement = request.POST.get('new_improvement')
+    if new_improvement:
+        improvement.improvement = new_improvement
+        improvement.save()
+    return redirect('favorites_index')
+
+
+
+
+
 
 
 

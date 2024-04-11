@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update Favorite Prompt</h1>
+<form method="POST" action="{% url 'update_favorite' improvement.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="new_improvement">New Improvement:</label>
+        <textarea class="form-control" id="new_improvement" name="new_improvement" rows="5">{{ improvement.improvement }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
