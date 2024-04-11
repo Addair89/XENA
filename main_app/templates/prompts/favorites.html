@@ -12,6 +12,10 @@
     <p class="card-text">
       <small class="text-muted">{{ improvement.timestamp }}</small>
     </p>
+    <form action="{% url 'delete_favorite' improvement.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   </div>
 </div>
 {% endfor %} {% endfor %} {% else %}
