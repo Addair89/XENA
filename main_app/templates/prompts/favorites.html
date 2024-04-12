@@ -5,20 +5,21 @@
 {% if favorite_improvements %}
     {% for user_favorite in favorite_improvements %}
         {% for improvement in user_favorite %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Original Prompt</h5>
-                    <p class="card-text">{{ improvement.user_prompt.prompt }}</p>
-                    <h5 class="card-title">Improvement</h5>
-                    <p class="card-text">{{ improvement.improvement }}</p>
+            <div class="fav-prompt-content">
+                <div class="fav-card-body">
+                    <p class="card-text"><span class="card-title">Original Prompt: </span>{{ improvement.user_prompt.prompt }}</p>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"><span class="card-title">Improvement: </span>{{ improvement.improvement }}</p>
                     <p class="card-text">
                         <small class="text-muted">{{ improvement.timestamp }}</small>
                     </p>
+                    <div class="fav-button">
                     <a href="{% url 'edit_favorite' improvement.id %}" class="btn btn-primary">Edit</a>
                     <form action="{% url 'delete_favorite' improvement.id %}" method="post" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
                     </form>
+                    </div>
                 </div>
             </div>
         {% endfor %}
