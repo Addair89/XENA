@@ -1,30 +1,37 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <h1>Favorite Prompts</h1>
-{% if favorite_improvements %}
-    {% for user_favorite in favorite_improvements %}
-        {% for improvement in user_favorite %}
-            <div class="fav-prompt-content">
-                <div class="fav-card-body">
-                    <p class="card-text"><span class="card-title">Original Prompt: </span>{{ improvement.user_prompt.prompt }}</p>
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"><span class="card-title">Improvement: </span>{{ improvement.improvement }}</p>
-                    <p class="card-text">
-                        <small class="text-muted">{{ improvement.timestamp }}</small>
-                    </p>
-                    <div class="fav-button">
-                    <a href="{% url 'edit_favorite' improvement.id %}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                    <form action="{% url 'delete_favorite' improvement.id %}" method="post" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    {% endfor %}
-{% else %}
-    <p>You don't have any favorite prompts yet.</p>
-{% endif %}
-{% endblock %}
+{% if favorite_improvements %} {% for user_favorite in favorite_improvements %}
+{% for improvement in user_favorite %}
+<div class="fav-prompt-content">
+  <div class="fav-card-body">
+    <p class="card-text">
+      <span class="card-title">Original Prompt: </span
+      >{{improvement.user_prompt.prompt }}
+    </p>
+    <h5 class="card-title"></h5>
+    <p class="card-text">
+      <span class="card-title">Improvement: </span>{{ improvement.improvement }}
+    </p>
+    <p class="card-text">
+      <small class="text-muted">{{ improvement.timestamp }}</small>
+    </p>
+    <div class="fav-button">
+      <a href="{% url 'edit_favorite' improvement.id %}" class="btn btn-primary"
+        ><i class="fa-solid fa-pencil"></i
+      ></a>
+      <form
+        action="{% url 'delete_favorite' improvement.id %}"
+        method="post"
+        class="d-inline"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+          <i class="fa-regular fa-trash-can"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endfor %} {% else %}
+<p>You don't have any favorite prompts yet.</p>
+{% endif %} {% endblock %}

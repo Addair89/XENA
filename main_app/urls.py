@@ -13,7 +13,4 @@ urlpatterns =[
     path('delete_favorite/<int:improvement_id>/', views.delete_favorite, name='delete_favorite'),
     path('edit_favorite/<int:improvement_id>/', views.edit_favorite, name='edit_favorite'),
     path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite'),
-    # path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite'),
-    # path('update_favorite/<int:improvement_id>/', views.update_favorite, name='update_favorite')
-    # path('prompt/<int:prompt_id>/favorite/', views.favorites_index, name='favorites_index')
 ]
