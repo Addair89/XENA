@@ -8,6 +8,23 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ category.name }}</span>
+        {% if category.name == "Education" %}
+        <i class="fa-solid fa-graduation-cap category-icon"></i>
+      {% elif category.name == "Finance" %}
+        <i class="fa-solid fa-piggy-bank category-icon"></i>
+      {% elif category.name == "Home/Lifestyle" %}
+        <i class="fa-solid fa-house category-icon"></i>
+      {% elif category.name == "Career"%}
+        <i class="fa-solid fa-briefcase category-icon"></i>
+      {% elif category.name == "Child Care"%}
+        <i class="fa-solid fa-children category-icon"></i>
+      {% elif category.name == "Fitness"%}
+        <i class="fa-solid fa-dumbbell category-icon"></i>
+      {% elif category.name == "General"%}
+        <i class="fa-solid fa-user category-icon"></i>
+      {% else %}
+        <i class="fa-solid fa-bowl-food category-icon"></i>
+      {% endif %}
         <p> {{ category.description|linebreaks }}</p>
       </div>
     </div>

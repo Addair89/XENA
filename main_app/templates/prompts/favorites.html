@@ -14,7 +14,7 @@
                         <small class="text-muted">{{ improvement.timestamp }}</small>
                     </p>
                     <div class="fav-button">
-                    <a href="{% url 'edit_favorite' improvement.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'edit_favorite' improvement.id %}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                     <form action="{% url 'delete_favorite' improvement.id %}" method="post" class="d-inline">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
