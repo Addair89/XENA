@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404,render, redirect
 from .models import Category, UserPrompt, UserFavoriteImprovement, PromptImprovement
 from django.views.decorators.http import require_POST
-from django.contrib.auth import login
+from django.contrib.auth import login 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import OpenAIForm
 from openai import OpenAI
@@ -35,14 +36,17 @@ def home(request):
 
     return render(request, 'home.html',{'form': form, 'response': response, "categories": categories})
 
+@login_required
 def categories(request):
     all_categories = Category.objects.all()
     return render(request, 'categories/index.html', {'categories': all_categories})
 
+@login_required
 def prompt(request):
     prompts = UserPrompt.objects.filter(user=request.user)
     return render(request, 'prompts/index.html', {'prompts': prompts})
 
+@login_required
 def add_to_favorites(request, improvement_id):
     # Get the current user and the improvement instance
     user = request.user
@@ -60,7 +64,7 @@ def add_to_favorites(request, improvement_id):
     favorite_improvements = [fav.improvements.all() for fav in favorites]
     return redirect('favorites_index')
 
-
+@login_required
 def favorites_index(request):
     if request.user.is_authenticated:
         favorites = UserFavoriteImprovement.objects.filter(user=request.user).prefetch_related('improvements')
@@ -71,12 +75,14 @@ def favorites_index(request):
         favorites = None
     return render(request, 'prompts/favorites.html', {'favorite_improvements': favorite_improvements})
 
+@login_required
 @require_POST
 def delete_favorite(request, improvement_id):
     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
     user_favorite = UserFavoriteImprovement.objects.get(user=request.user)
     user_favorite.improvements.remove(improvement)
     return redirect('favorites_index')
+
 
 def signup(request):
   error_message = ''
@@ -92,7 +98,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-
+@login_required
 def openai_view(request):
     form = OpenAIForm(request.POST or None)
     response = None
@@ -110,6 +116,7 @@ def openai_view(request):
 
     return render(request, 'openai.html', {'form': form, 'response': response})
 
+@login_required
 def category_detail(request, category_id):
     category = Category.objects.get(id=category_id)
     form = OpenAIForm(request.POST or None)
@@ -149,19 +156,12 @@ def category_detail(request, category_id):
                    "prompt_improvement": prompt_improvement 
                    })
 
-# @require_POST
-# def update_favorite(request, improvement_id):
-#     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
-#     new_improvement = request.POST.get('new_improvement')
-#     if new_improvement:
-#         improvement.improvement = new_improvement
-#         improvement.save()
-#     return redirect('update_favorite', improvement_id=improvement_id)
-
+@login_required
 def edit_favorite(request, improvement_id):
     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
     return render(request, 'prompts/update_favorite.html', {'improvement': improvement})
 
+@login_required
 @require_POST
 def update_favorite(request, improvement_id):
     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
