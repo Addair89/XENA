@@ -68,12 +68,17 @@ main h2 {
   text-decoration: none;
   border-radius: 15px;
   background-color: #4d194d8f;
+  border-radius: 15px;
+  background: #4d194da7;
+  box-shadow: 5px 5px 4px #1f0a1f, -5px -5px 4px #1b3a4b;
+  transition: all 0.2s ease;
 }
 
 .category-link:hover {
   background-color: #006466;
   border: 2px solid #4d194d8f;
-  transition: all 0.2s ease-in-out;
+  transform: translateY(-5px);
+  box-shadow: 2px 11px 4px #1f0a1f, -5px -5px 4px #1b3a4b;
 }
 
 .category-header {
@@ -252,6 +257,17 @@ footer.page-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* From https://css.glass */
+  background: rgb(11, 82, 91);
+  background: radial-gradient(
+    circle,
+    rgba(11, 82, 91, 0.478) 19%,
+    rgba(77, 25, 77, 0.506) 65%
+  );
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
 }
 
 ul {
