@@ -238,3 +238,46 @@ ul li form button:hover {
 .nav-wrapper ul:first-child li a:hover {
   background: none;
 }
+
+.cards-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 15px;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  color: whitesmoke;
+  width: 200px;
+  font-size: 3vmin;
+  text-align: center;
+  padding: 5vmin;
+  background: #27264063;
+  border-radius: 15px;
+  height: 171px;
+}
+
+.card:hover {
+  background-color: #006466;
+    border: 2px solid #4d194d8f;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-content {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 7px;
+}
+
+.card-title {
+  font-weight: bold;
+}

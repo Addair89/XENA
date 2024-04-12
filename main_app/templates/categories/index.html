@@ -2,15 +2,16 @@
 
 <h1>Categories</h1>
 
+<div class="cards-container">
 {% for category in categories %}
-<a href="{% url 'category_detail' category.id %}">
+<a  class="card-link" href="{% url 'category_detail' category.id %}">
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ category.name }}</span>
-        <p>Description: {{ category.description|linebreaks }}</p>
+        <p> {{ category.description|linebreaks }}</p>
       </div>
     </div>
   </a>
   {% endfor %}
-
+</div>
 {% endblock %}
