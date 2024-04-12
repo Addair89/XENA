@@ -141,7 +141,26 @@ main h2 {
   margin-top: auto;
 }
 
-.category-input-form p input {
+.favorite-update-form {
+  margin: 0;
+}
+
+.fav-update-label {
+  font-size: 3vmin;
+  color: whitesmoke;
+  margin: 2vmin;
+}
+
+.fav-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-input-form p input,
+.category-input-form div textarea {
   width: 100%;
   height: 80px;
   font-size: 3vmin;
@@ -152,12 +171,28 @@ main h2 {
   border-radius: 15px;
 }
 
+.category-input-form div textarea {
+  font-size: 2.5vmin;
+  height: 125px;
+}
+
 .cat-form-btn {
   background: none;
   border: none;
   position: absolute;
   top: 55%;
   right: 10px;
+}
+
+.update-form-btn {
+  top: 80%;
+  right: 15px;
+}
+
+.update-form-cancel {
+  color: whitesmoke;
+  font-size: 2vmin;
+  margin: 2vmin;
 }
 
 .fav-form {
@@ -328,7 +363,7 @@ ul li form button:hover {
 
 .fav-button {
   display: flex;
-  justify-content: space-between ;
+  justify-content: space-between;
 }
 
 .btn-danger {
@@ -343,19 +378,19 @@ ul li form button:hover {
 
 .fa-trash-can:hover {
   cursor: pointer;
-  scale: 1.3; 
-  color: red
+  scale: 1.3;
+  color: red;
 }
 
 .fa-pencil {
   font-size: 4vmin;
-  color: #006466
+  color: #006466;
 }
 
 .btn-primary:hover {
   cursor: pointer;
   scale: 1.3;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   filter: brightness(1.5);
 }
 

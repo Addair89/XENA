@@ -158,6 +158,7 @@ def category_detail(request, category_id):
 
 @login_required
 def edit_favorite(request, improvement_id):
+    print(request.path)
     improvement = get_object_or_404(PromptImprovement, id=improvement_id)
     return render(request, 'prompts/update_favorite.html', {'improvement': improvement})
 
