@@ -1,9 +1,34 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Log In</h1>
-
-<form class="login-form" method="POST" action="{% url 'login' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <input type="hidden" name="next" value="{{ next }}" />
-  <button type="submit" class="btn">Log In</button>
-</form>
+{% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-left">
+        <img
+          class="login-logo"
+          src="{% static 'images/Designer.png' %}"
+          alt=""
+        />
+      </div>
+      <div class="login-right">
+        <h1 class="login-page-header">Log In</h1>
+        <form class="login-form" method="POST" action="{% url 'login' %}">
+          {% csrf_token %} {{ form.as_p }}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <button type="submit" class="btn login-page-btn">Log In</button>
+        </form>
+        <p style="color: whitesmoke;">
+          No Account?
+          <a class="login-page-signup-btn" href="{% url 'signup' %}">Sign Up</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
 {% endblock %}
