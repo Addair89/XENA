@@ -305,3 +305,43 @@ ul li form button:hover {
 .card-title {
   font-family: "shentox-bold";
 }
+
+.fav-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: left;
+  height: 100%;
+}
+
+.fav-prompt-content {
+  color: whitesmoke;
+  font-size: 3vmin;
+  padding: 5vmin;
+  background: #27264063;
+  border-radius: 15px;
+  margin: 15px;
+  width: 50%;
+}
+
+.fav-button {
+  display: flex;
+  justify-content: space-between ;
+}
+
+.btn-danger {
+  background: none;
+  border: none;
+}
+
+.btn-danger:hover {
+  cursor: pointer;
+  scale: 1.3;
+  color: red;
+}
+
+.fa-trash-can {
+  font-size: 4vmin;
+  color: #ea887d;
+}
