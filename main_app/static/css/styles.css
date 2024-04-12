@@ -3,6 +3,11 @@
   src: local("shentox"), url("../fonts/ShentoxTRIAL-Rg.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "shentox-bold";
+  src: local("shentox"), url("../fonts/ShentoxTRIAL-Bd.otf") format("truetype");
+}
+
 html,
 * {
   margin: 0;
@@ -97,6 +102,25 @@ main h2 {
   padding: 1vmin;
   border-radius: 15px;
   background: #006466c2;
+}
+
+.prompt-content {
+  color: whitesmoke;
+  font-size: 3vmin;
+  padding: 5vmin;
+  background: #27264063;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.prompt-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.prompt-category {
+  font-family: "shentox-bold";
+  font-size: 3.7vmin;
 }
 
 .improved-response {
@@ -249,22 +273,21 @@ ul li form button:hover {
   align-items: center;
 }
 
-
 .card {
   color: whitesmoke;
-  width: 200px;
+  width: 300px;
   font-size: 3vmin;
   text-align: center;
   padding: 5vmin;
   background: #27264063;
   border-radius: 15px;
-  height: 171px;
+  height: 400px;
 }
 
 .card:hover {
   background-color: #006466;
-    border: 2px solid #4d194d8f;
-    transition: all 0.2s ease-in-out;
+  border: 2px solid #4d194d8f;
+  transition: all 0.2s ease-in-out;
 }
 
 .card-link {
@@ -273,11 +296,12 @@ ul li form button:hover {
 
 .card-content {
   display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 7px;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  gap: 7px;
 }
 
 .card-title {
-  font-weight: bold;
+  font-family: "shentox-bold";
 }
