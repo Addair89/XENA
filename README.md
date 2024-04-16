@@ -1,6 +1,6 @@
 # **XENA**
 
-## Xena is an AI toolkit powered by OpenAI to assist the everyday user navigate through while providing feedback to assist with future AI powered projects.
+## Xena is an AI toolkit powered by OpenAI to assist the everyday user navigate through real world problems while providing feedback to assist with future AI powered projects.
 
 ![login](https://i.imgur.com/rlDuaES.png)
 
