@@ -15,6 +15,7 @@ import os
 from dotenv import load_dotenv
 import django_on_heroku
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -136,4 +137,9 @@ LOGOUT_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import django_on_heroku
+<<<<<<< HEAD
+
 django_on_heroku.settings(locals())
+=======
+django_on_heroku.settings(locals())
+>>>>>>> 0a0dbb88fbe85aa0b8f595850aae49f20f0d8607
